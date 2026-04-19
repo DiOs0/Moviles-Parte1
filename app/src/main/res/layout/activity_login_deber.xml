@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:fillViewport="true"
+    android:background="#D9D9D9">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Welcome"
+            android:textColor="#7C24D3"
+            android:textSize="42sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Please login or sign up to continue using our app"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
+
+
+        <ImageView
+            android:id="@+id/ivIllustration"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bk"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+            tools:layout_editor_absoluteX="24dp" />
+
+
+        <TextView
+            android:id="@+id/tvSocialLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Enter via Social Networks"
+            android:textColor="#7C24D3"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivIllustration" />
+
+
+        <LinearLayout
+            android:id="@+id/llSocialButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSocialLabel">
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/white_bg"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/facebook_icon" />
+
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/white_bg"
+                android:elevation="4dp"
+                android:padding="20dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/tw" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvEmailLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="or login with email"
+            android:textColor="#2D3142"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llSocialButtons" />
+
+                <Button
+            android:id="@+id/btnSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginTop="24dp"
+            android:text="Sign up"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:fontFamily="@font/poppins_bold"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailLabel" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You already have an account? "
+                android:textColor="#000000"
+                android:fontFamily="@font/poppins_medium" />
+
+            <TextView
+                android:id="@+id/tvLoginLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="#7C24D3"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

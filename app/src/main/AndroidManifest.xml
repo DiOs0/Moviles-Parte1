@@ -15,10 +15,13 @@
             android:name=".activity_mobil_login_with_drawables"
             android:exported="false" />
         <activity
+            android:name=".Login2_Constraint"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Login2_Constraint"
+            android:name=".LoginDeber"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
