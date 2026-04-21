@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Moviles-Parte1</string>
+    <string name="title_app_login">Welcome</string>
+    <string name="login_or_sign_up">Please login or sign up to continue using our app</string>
+    <string name="middle_text">Enter via Social Networks</string>
+    <string name="text_or_login_with_email">or login with email</string>
+    <string name="sign_up">Sign up</string>
+    <string name="text_already_have_an_account">You already have an account?</string>
+    <string name="login">Login</string>
 </resources>
