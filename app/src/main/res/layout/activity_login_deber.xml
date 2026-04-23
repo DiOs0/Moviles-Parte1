@@ -2,17 +2,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
+    android:background="@color/light_grey"
     android:fillViewport="true"
-    android:background="@color/light_grey">
+    tools:context=".LoginDeber">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp">
-
 
         <TextView
             android:id="@+id/tvWelcome"
@@ -27,7 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tvSubtitle"
             android:layout_width="0dp"
@@ -41,31 +40,52 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvWelcome" />
 
-
-        <ImageView
-            android:id="@+id/ivIllustration"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilUsername"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/bk"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
-            tools:layout_editor_absoluteX="24dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/user"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tilUsername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvSocialLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppins_medium"
             android:text="@string/middle_text"
             android:textColor="@color/title_color"
             android:textSize="18sp"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivIllustration" />
-
+            app:layout_constraintTop_toBottomOf="@id/tilPassword" />
 
         <LinearLayout
             android:id="@+id/llSocialButtons"
@@ -78,6 +98,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvSocialLabel">
 
             <ImageButton
+                android:id="@+id/btnFacebook"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginEnd="20dp"
@@ -88,6 +109,7 @@
                 android:src="@drawable/facebook" />
 
             <ImageButton
+                android:id="@+id/btnTwitter"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@drawable/white_bg"
@@ -97,34 +119,32 @@
                 android:src="@drawable/tw" />
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/tvEmailLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:text="@string/text_or_login_with_email"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llSocialButtons" />
 
-                <Button
+        <Button
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/sign_up"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="22sp"
-            android:fontFamily="@font/poppins_bold"
             android:drawableLeft="@drawable/facebook"
             app:layout_constraintTop_toBottomOf="@id/tvEmailLabel" />
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -135,23 +155,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnSignUp">
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
                 android:text="@string/text_already_have_an_account"
-                android:textColor="@color/black"
-                android:fontFamily="@font/poppins_medium" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvLoginLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_bold"
                 android:text="@string/login"
                 android:textColor="@color/title_color"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_bold" />
+                android:textStyle="bold" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
