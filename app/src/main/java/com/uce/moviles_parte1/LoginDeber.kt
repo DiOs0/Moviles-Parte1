@@ -31,6 +31,9 @@ class LoginDeber : AppCompatActivity() {
             if (binding.txtUsername.text.toString() == "Admin" && binding.txtPassword.text.toString() == "root"){
                 //Punto a ----> Punto B
                 val intent = Intent(this, Principal::class.java)
+                intent.putExtra("xx1","Hola mundo")
+
+                //Esto va al final
                 startActivity(intent)
             }
             else{
