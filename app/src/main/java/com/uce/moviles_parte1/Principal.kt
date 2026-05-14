@@ -1,16 +1,21 @@
 package com.uce.moviles_parte1
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.uce.moviles_parte1.databinding.ActivityPrincipalBinding
 
-class Principal : AppCompatActivity() {
+class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var binding: ActivityPrincipalBinding
@@ -27,6 +32,12 @@ class Principal : AppCompatActivity() {
         }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
+
     private fun initVariables(){
         intent.extras.let {
             var saludo= it?.get("xx1")
@@ -36,6 +47,17 @@ class Principal : AppCompatActivity() {
                 Snackbar.LENGTH_LONG
                 ).show()
         }
+
+        var options =listOf<String>("Youtube","Google","Facebook")
+
+        //Adaptador/Intermediario
+        var adapter= ArrayAdapter(this,R.layout.my_spinner_layout,options)
+
+
+        binding.spinnerUrls.adapter=adapter
+        binding.spinnerUrls.onItemSelectedListener=this
+
+
     }
 
     private fun initListeners(){
@@ -55,5 +77,44 @@ class Principal : AppCompatActivity() {
             //startActivity(mapIntent)
 
         }
+
+
+        //Este es un reemplazo del toast (es mas interactivo)
+        binding.logoutBtn.setOnClickListener {
+
+            val dialog = MaterialAlertDialogBuilder(this)
+                .setTitle("Log Out")
+                .setMessage("Esta seguro de salir de la aplicacion")
+                .setCancelable(true)
+                .setPositiveButton("Si"){dialog,id->
+                    val intent = Intent(this, Login2_Constraint::class.java)
+                    startActivity(intent)
+
+                }
+                .setNegativeButton("No"){dialog,id->
+                    dialog.cancel()
+
+                }
+                .setNeutralButton("Cancelar"){dialog,id->
+                    dialog.dismiss()
+
+                }
+                .show()
+
+            //val intent = Intent(this, Login2_Constraint::class.java)
+            //startActivity(intent)
+        }
+    }
+
+    override fun onItemSelected(parent:AdapterView<*>?,view:View,position:Int,id:Long) {
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Posicion")
+            .setMessage("La posicion es:" + position)
+            .setCancelable(true)
+            .show()
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }

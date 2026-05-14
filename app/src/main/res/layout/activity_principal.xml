@@ -25,12 +25,30 @@
         android:layout_margin="8dp"
         android:hint="www.example.com"/>
 
+
+    <Spinner
+        android:id="@+id/spinnerUrls"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        />
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/urlBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="Abrir URL"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/red"
+        android:text="Cerrar sesion"/>
 
 
 </LinearLayout>
