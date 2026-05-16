@@ -54,28 +54,29 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         var options =listOf<String>("Youtube","Google","Facebook","Apple","GoyGram")
+        var optionsEmpresas=listOf<Empresas>(
+            Empresas("Youtube","https://www.imprentaonline.net/blog/wp-content/uploads/logotipo-youtube-2015.png"),
+            Empresas("Google","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlh1Kyfo9hJplmkiOKcHD9XcpUvlJaZrh5ZA&s"),
+            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw")
+
+        )
 
         //Adaptador/Intermediario
         var adapter= ArrayAdapter(this,R.layout.my_spinner_layout,options)
 
 
-        binding.spinnerUrls.adapter=adapter
-        binding.spinnerUrls.onItemSelectedListener=this
+//        binding.spinnerUrls.adapter=adapter
+//        binding.spinnerUrls.onItemSelectedListener=this
 
         //Recycler View
-        var adapterRecyclerView= CustomAdapter(options)
+        var adapterRecyclerView= CustomAdapter(optionsEmpresas)
         binding.RvUrls.adapter= adapterRecyclerView
         binding.RvUrls.layoutManager= LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             true
             )
 
-        var optionsEmpresas=listOf<Empresas>(
-            Empresas("Youtube","https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail"),
-            Empresas("Google","https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/3840px-Google_2015_logo.svg.png"),
-            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw")
 
-                )
 
 
 

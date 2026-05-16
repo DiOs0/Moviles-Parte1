@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.view.ViewParent
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.MySpinnerLayoutBinding
 import com.uce.moviles_parte1.dto.Empresas
@@ -43,8 +44,8 @@ class CustomAdapter(var lista:List<Empresas>): RecyclerView.Adapter<CustomAdapte
 
         fun render(item: Empresas){
             localBinding.textEmpresa.setText(item.name)
-            localBinding.imgEmpresa.setImageURI(item.image.toUri())
-
+            Picasso.get().load(item.image)
+                .into(localBinding.imgEmpresa)
         }
 
     }
