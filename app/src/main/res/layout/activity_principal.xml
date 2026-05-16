@@ -32,6 +32,12 @@
         android:layout_height="64dp"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RvUrls"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/urlBtn"

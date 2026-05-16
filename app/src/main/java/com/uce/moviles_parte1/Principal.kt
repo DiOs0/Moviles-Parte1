@@ -11,9 +11,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.uce.moviles_parte1.adapters.CustomAdapter
 import com.uce.moviles_parte1.databinding.ActivityPrincipalBinding
+import com.uce.moviles_parte1.dto.Empresas
 
 class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
@@ -48,7 +53,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 ).show()
         }
 
-        var options =listOf<String>("Youtube","Google","Facebook")
+        var options =listOf<String>("Youtube","Google","Facebook","Apple","GoyGram")
 
         //Adaptador/Intermediario
         var adapter= ArrayAdapter(this,R.layout.my_spinner_layout,options)
@@ -57,6 +62,24 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         binding.spinnerUrls.adapter=adapter
         binding.spinnerUrls.onItemSelectedListener=this
 
+        //Recycler View
+        var adapterRecyclerView= CustomAdapter(options)
+        binding.RvUrls.adapter= adapterRecyclerView
+        binding.RvUrls.layoutManager= LinearLayoutManager(this,
+            LinearLayoutManager.HORIZONTAL,
+            true
+            )
+
+        var optionsEmpresas=listOf<Empresas>(
+            Empresas("Youtube","https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/1280px-YouTube_Logo_2017.svg.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail"),
+            Empresas("Google","https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/3840px-Google_2015_logo.svg.png"),
+            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw")
+
+                )
+
+
+
+//            binding.RvUrls.layoutManager= GridLayoutManager(this,2)
 
     }
 
