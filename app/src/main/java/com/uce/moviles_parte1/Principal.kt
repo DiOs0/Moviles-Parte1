@@ -1,6 +1,7 @@
 package com.uce.moviles_parte1
 
 import android.app.AlertDialog
+import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,6 +25,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var binding: ActivityPrincipalBinding
+    private lateinit var adapterRecyclerView: CustomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +57,9 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         var options =listOf<String>("Youtube","Google","Facebook","Apple","GoyGram")
         var optionsEmpresas=listOf<Empresas>(
-            Empresas("Youtube","https://www.imprentaonline.net/blog/wp-content/uploads/logotipo-youtube-2015.png"),
-            Empresas("Google","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlh1Kyfo9hJplmkiOKcHD9XcpUvlJaZrh5ZA&s"),
-            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw")
+            Empresas("Youtube","https://www.imprentaonline.net/blog/wp-content/uploads/logotipo-youtube-2015.png","https://www.youtube.com/"),
+            Empresas("Google","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlh1Kyfo9hJplmkiOKcHD9XcpUvlJaZrh5ZA&s","https://www.google.com/"),
+            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw","https://www.instagram.com/")
 
         )
 
@@ -69,20 +71,45 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //        binding.spinnerUrls.onItemSelectedListener=this
 
         //Recycler View
-        var adapterRecyclerView= CustomAdapter(optionsEmpresas)
+        var adapterRecyclerView= CustomAdapter(
+            {getName(it)},
+            {deleteEmpresa(it)}
+        )
         binding.RvUrls.adapter= adapterRecyclerView
         binding.RvUrls.layoutManager= LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             true
             )
 
-
+        adapterRecyclerView.lista=optionsEmpresas as MutableList<Empresas>
+        adapterRecyclerView.notifyDataSetChanged()
 
 
 
 //            binding.RvUrls.layoutManager= GridLayoutManager(this,2)
 
     }
+
+
+    fun getName(emp: Empresas){
+//        Snackbar.make(binding.RvUrls,
+//            emp.name,
+//            Snackbar.LENGTH_LONG
+//            ).show()
+
+        val i =Intent(Intent.ACTION_WEB_SEARCH)
+        i.putExtra(SearchManager.QUERY,emp.name)
+        startActivity(i)
+
+    }
+
+    fun deleteEmpresa(emp: Empresas){
+        var newEmpresas=adapterRecyclerView.lista.minus(emp)
+        adapterRecyclerView.lista=newEmpresas as MutableList<Empresas>
+        adapterRecyclerView.notifyDataSetChanged()
+
+    }
+
 
     private fun initListeners(){
         binding.urlBtn.setOnClickListener {

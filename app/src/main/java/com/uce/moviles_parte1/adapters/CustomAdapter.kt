@@ -5,13 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
 import androidx.core.net.toUri
+import androidx.core.view.RoundedCornerCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.MySpinnerLayoutBinding
 import com.uce.moviles_parte1.dto.Empresas
 
-class CustomAdapter(var lista:List<Empresas>): RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+class CustomAdapter(
+    var onClick:(Empresas) -> Unit,
+    var onDelete:(Empresas)->Unit
+
+
+):
+    RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+
+    var lista: MutableList<Empresas> = ArrayList<Empresas>()
 
 
     override fun onCreateViewHolder(
@@ -33,7 +42,7 @@ class CustomAdapter(var lista:List<Empresas>): RecyclerView.Adapter<CustomAdapte
         holder: CustomViewHolder,
         position: Int
     ) {
-        holder.render(lista[position])
+        holder.render(lista[position],onClick, onDelete)
     }
 
     override fun getItemCount()=lista.size
@@ -42,10 +51,21 @@ class CustomAdapter(var lista:List<Empresas>): RecyclerView.Adapter<CustomAdapte
 
         private var localBinding: MySpinnerLayoutBinding= MySpinnerLayoutBinding.bind(view)
 
-        fun render(item: Empresas){
+        //El render manda cada elemento, no envia directamente
+        fun render(item: Empresas,onClick:(Empresas) -> Unit,
+                   onDelete:(Empresas)->Unit
+                   ){
             localBinding.textEmpresa.setText(item.name)
             Picasso.get().load(item.image)
                 .into(localBinding.imgEmpresa)
+
+            //Aqui se esta mandando una empresa para que le vaya asignando a cada una
+            localBinding.imgEmpresa.setOnClickListener {
+                onClick(item)
+            }
+            localBinding.textEmpresa.setOnClickListener {
+                onDelete(item)
+            }
         }
 
     }

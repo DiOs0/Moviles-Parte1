@@ -14,16 +14,16 @@
         android:padding="14dp"/>
 
 
-<TextView
-    android:id="@+id/textEmpresa"
-    style="?android:attr/spinnerItemStyle"
-    android:singleLine="true"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ellipsize="marquee"
-    android:textColor="@color/red"
-    android:layout_margin="22dp"
-    android:textSize="22sp"
-    android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/textEmpresa"
+        style="?android:attr/spinnerItemStyle"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:textColor="@color/red"
+        android:layout_margin="22dp"
+        android:textSize="22sp"
+        android:textAlignment="center"/>
 
-    </LinearLayout>
+</LinearLayout>
