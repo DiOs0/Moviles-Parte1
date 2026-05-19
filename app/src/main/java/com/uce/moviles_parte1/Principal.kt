@@ -25,7 +25,8 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
 
     private lateinit var binding: ActivityPrincipalBinding
-    private lateinit var adapterRecyclerView: CustomAdapter
+    var adapterRecyclerView = CustomAdapter({getName(it)},
+        {deleteEmpresa(it)})
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,10 +72,11 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 //        binding.spinnerUrls.onItemSelectedListener=this
 
         //Recycler View
-        var adapterRecyclerView= CustomAdapter(
-            {getName(it)},
-            {deleteEmpresa(it)}
-        )
+//        adapterRecyclerView= CustomAdapter(
+//            {getName(it)},
+//            {deleteEmpresa(it)}
+//        )
+
         binding.RvUrls.adapter= adapterRecyclerView
         binding.RvUrls.layoutManager= LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
@@ -138,7 +140,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 .setMessage("Esta seguro de salir de la aplicacion")
                 .setCancelable(true)
                 .setPositiveButton("Si"){dialog,id->
-                    val intent = Intent(this, Login2_Constraint::class.java)
+                    val intent = Intent(this, LoginDeber::class.java)
                     startActivity(intent)
 
                 }
