@@ -58,9 +58,9 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         var options =listOf<String>("Youtube","Google","Facebook","Apple","GoyGram")
         var optionsEmpresas=listOf<Empresas>(
-            Empresas("Youtube","https://www.imprentaonline.net/blog/wp-content/uploads/logotipo-youtube-2015.png","https://www.youtube.com/"),
-            Empresas("Google","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlh1Kyfo9hJplmkiOKcHD9XcpUvlJaZrh5ZA&s","https://www.google.com/"),
-            Empresas("Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw","https://www.instagram.com/")
+            Empresas(1,"Youtube","https://www.imprentaonline.net/blog/wp-content/uploads/logotipo-youtube-2015.png","https://www.youtube.com/"),
+            Empresas(2,"Google","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlh1Kyfo9hJplmkiOKcHD9XcpUvlJaZrh5ZA&s","https://www.google.com/"),
+            Empresas(3,"Instagram","https://i.ytimg.com/vi/Hg469wSrZhI/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDt_wnd3dLlZ5yjXITG7_wUI8c3jw","https://www.instagram.com/")
 
         )
 

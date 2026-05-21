@@ -6,11 +6,18 @@ import android.view.ViewGroup
 import android.view.ViewParent
 import androidx.core.net.toUri
 import androidx.core.view.RoundedCornerCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.MySpinnerLayoutBinding
 import com.uce.moviles_parte1.dto.Empresas
+
+private val diffUtil = object : DiffUtil.ItemCallback<Empresas>() {
+    override fun areItemsTheSame(oldItem: Empresas, newItem: Empresas): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Empresas, newItem: Empresas): Boolean = oldItem == newItem
+}
 
 class CustomAdapter(
     var onClick:(Empresas) -> Unit,
@@ -18,7 +25,7 @@ class CustomAdapter(
 
 
 ):
-    RecyclerView.Adapter<CustomAdapter.CustomViewHolder>() {
+    ListAdapter<Empresas, CustomAdapter.CustomViewHolder>(diffUtil) {
 
     var lista: MutableList<Empresas> = ArrayList<Empresas>()
 
