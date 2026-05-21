@@ -157,6 +157,45 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             //val intent = Intent(this, Login2_Constraint::class.java)
             //startActivity(intent)
         }
+
+
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            item->
+            when(item.itemId){
+                R.id.mn_home->{
+                    Snackbar.make(binding.RvUrls,
+                        item.title.toString(),
+                        Snackbar.LENGTH_LONG)
+                        .show()
+                    true
+                }
+                R.id.mn_pag1 ->{ true}
+                R.id.mn_pag2 ->{
+                    val dialog = MaterialAlertDialogBuilder(this)
+                        .setTitle("Log Out")
+                        .setMessage("Esta seguro de salir de la aplicacion")
+                        .setCancelable(true)
+                        .setPositiveButton("Si"){dialog,id->
+                            val intent = Intent(this, LoginDeber::class.java)
+                            startActivity(intent)
+
+                        }
+                        .setNegativeButton("No"){dialog,id->
+                            dialog.cancel()
+
+                        }
+                        .setNeutralButton("Cancelar"){dialog,id->
+                            dialog.dismiss()
+
+                        }
+                        .show()
+                    true }
+                else-> false
+
+            }
+
+
+        }
     }
 
     override fun onItemSelected(parent:AdapterView<*>?,view:View,position:Int,id:Long) {

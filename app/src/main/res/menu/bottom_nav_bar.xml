@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/sharp_add_home_24"
+        android:id="@+id/mn_home"
+        android:title="Inicio"
+        />
+    <item
+        android:icon="@drawable/baseline_accessibility_24"
+        android:id="@+id/mn_pag1"
+        android:title="Pagina 1"/>
+    <item
+        android:icon="@drawable/twotone_air_24"
+        android:id="@+id/mn_pag2"
+        android:title="Salir"/>
+
+
+</menu>
