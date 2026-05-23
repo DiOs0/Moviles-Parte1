@@ -1,6 +1,5 @@
-package com.uce.moviles_parte1
+package com.uce.moviles_parte1.activities
 
-import android.app.AlertDialog
 import android.app.SearchManager
 import android.content.Intent
 import android.net.Uri
@@ -8,15 +7,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.adapters.CustomAdapter
 import com.uce.moviles_parte1.databinding.ActivityPrincipalBinding
 import com.uce.moviles_parte1.dto.Empresas
@@ -65,7 +60,7 @@ class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         )
 
         //Adaptador/Intermediario
-        var adapter= ArrayAdapter(this,R.layout.my_spinner_layout,options)
+        var adapter= ArrayAdapter(this, R.layout.my_spinner_layout,options)
 
 
 //        binding.spinnerUrls.adapter=adapter

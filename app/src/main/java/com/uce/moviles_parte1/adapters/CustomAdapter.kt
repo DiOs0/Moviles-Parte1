@@ -3,9 +3,6 @@ package com.uce.moviles_parte1.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
-import androidx.core.net.toUri
-import androidx.core.view.RoundedCornerCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
