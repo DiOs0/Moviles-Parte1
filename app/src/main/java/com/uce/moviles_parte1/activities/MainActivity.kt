@@ -7,7 +7,7 @@ import androidx.fragment.app.commit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.ActivityFragmentBinding
-import com.uce.moviles_parte1.fragments.FirstFrament
+import com.uce.moviles_parte1.fragments.FirstFragment
 import com.uce.moviles_parte1.fragments.FragmentDos
 import java.security.Principal
 
@@ -30,22 +30,22 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.mn_home -> {
 
-                    supportFragmentManager.commit()
-                    {
-                        val f1 = FirstFrament()
-                        replace(R.id.frameLayout, f1)
-                        //addToBackStack(null)
-                    }
-                    true }
-
-                R.id.mn_pag1 -> {
-
-                    supportFragmentManager.commit {
-
-                        val f2 = FragmentDos()
-                        replace(R.id.frameLayout, f2)
-                        //addToBackStack(null)
-                    }
+//                    supportFragmentManager.commit()
+//                    {
+//                        val f1 = FirstFrament()
+//                        replace(R.id.frameLayout, f1)
+//                        //addToBackStack(null)
+//                    }
+//                    true }
+//
+//                R.id.mn_pag1 -> {
+//
+//                    supportFragmentManager.commit {
+//
+//                        val f2 = FragmentDos()
+//                        replace(R.id.frameLayout, f2)
+//                        //addToBackStack(null)
+//                    }
 
                     true }
 

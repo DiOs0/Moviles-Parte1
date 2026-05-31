@@ -91,4 +91,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_bar" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/navFragmentViewer"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bottomNavigationView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/main_graph"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,8 @@
+import com.android.build.api.dsl.ViewBinding
+
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.navigation.safeargs)
 }
 
 android {
@@ -34,21 +37,24 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     buildFeatures{
-        viewBinding= true
+        viewBinding=true
+
     }
 }
-
-
 
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.picasso)
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    // Views/Fragments integration
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
 }
