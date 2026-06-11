@@ -14,19 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovilesParte1">
         <activity
-            android:name=".activities.Principal"
+            android:name=".application.activities.Principal"
             android:exported="false" />
         <activity
-            android:name=".activities.Login2_Constraint"
+            android:name=".application.activities.Login2_Constraint"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginDeber"
+            android:name=".application.activities.LoginDeber"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".application.activities.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MobilLoginFragment"
+            android:name=".application.activities.MobilLoginFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

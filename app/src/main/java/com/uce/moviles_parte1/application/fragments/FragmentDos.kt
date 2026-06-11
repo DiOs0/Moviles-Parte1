@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.fragments
+package com.uce.moviles_parte1.application.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

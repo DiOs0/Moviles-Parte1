@@ -1,14 +1,11 @@
-package com.uce.moviles_parte1.activities
+package com.uce.moviles_parte1.application.activities
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.ActivityFragmentBinding
-import com.uce.moviles_parte1.fragments.FirstFragment
-import com.uce.moviles_parte1.fragments.FragmentDos
 import java.security.Principal
 
 class MainActivity : AppCompatActivity() {

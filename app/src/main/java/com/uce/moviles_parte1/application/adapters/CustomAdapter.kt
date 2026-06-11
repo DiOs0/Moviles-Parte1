@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.adapters
+package com.uce.moviles_parte1.application.adapters
 
 import android.view.LayoutInflater
 import android.view.View

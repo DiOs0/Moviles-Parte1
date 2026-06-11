@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.activities
+package com.uce.moviles_parte1.application.activities
 
 import android.app.SearchManager
 import android.content.Intent
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.uce.moviles_parte1.R
-import com.uce.moviles_parte1.adapters.CustomAdapter
+import com.uce.moviles_parte1.application.adapters.CustomAdapter
 import com.uce.moviles_parte1.databinding.ActivityPrincipalBinding
 import com.uce.moviles_parte1.dto.Empresas
 

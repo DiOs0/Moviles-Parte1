@@ -3,6 +3,7 @@ import com.android.build.api.dsl.ViewBinding
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.navigation.safeargs)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -57,4 +58,8 @@ dependencies {
     // Views/Fragments integration
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    implementation(platform("com.google.firebase:firebase-bom:34.11.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
 }

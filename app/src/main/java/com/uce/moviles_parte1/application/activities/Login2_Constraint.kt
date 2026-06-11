@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.activities
+package com.uce.moviles_parte1.application.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
