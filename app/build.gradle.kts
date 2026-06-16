@@ -62,4 +62,12 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.11.0"))
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
+
+    // For standard XML Views (Activities/Fragments)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.9") // Needed for easy initialization
+
+    // For Jetpack Compose UI esto es para manejar live data
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
+
 }
