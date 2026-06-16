@@ -16,6 +16,7 @@ import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.application.viewmodels.FirstViewModel
 import com.uce.moviles_parte1.databinding.FragmentFirstFramentBinding
 import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.logic.usercases.SaveUserUC
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -72,7 +73,7 @@ class FirstFragment : Fragment() {
             }
 
             lifecycleScope.launch (Dispatchers.Main){
-                firstVM.guardarUsuario(user,db)
+                firstVM.guardarUsuario(user,db, SaveUserUC())
                 //Los observers se registran solo una vez
             }
 

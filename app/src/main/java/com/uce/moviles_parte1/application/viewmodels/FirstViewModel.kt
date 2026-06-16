@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.logic.usercases.SaveUserUC
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -43,11 +44,12 @@ class FirstViewModel: ViewModel (){
 
     fun guardarUsuario(
         user: UserDtoRemote,
-        db: FirebaseFirestore
+        db: FirebaseFirestore,
+        saveUC: SaveUserUC
     ){
 
         viewModelScope.launch {
-            val usnew=saveUser(user,db)
+            val usnew=saveUC.saveUser(user,db)
             val usr=usnew.getOrNull()
 
             if(usr!=null){
@@ -60,17 +62,6 @@ class FirstViewModel: ViewModel (){
         }
 
 
-    }
-
-
-    private suspend fun saveUser(user: UserDtoRemote,db: FirebaseFirestore): Result<UserDtoRemote>{
-        var resp= db.collection("users")
-            .add(user)
-            .await()
-            .runCatching {
-                user
-            }
-        return resp
     }
 
 }
