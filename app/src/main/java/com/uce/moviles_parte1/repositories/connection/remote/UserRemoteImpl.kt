@@ -1,17 +1,41 @@
 package com.uce.moviles_parte1.repositories.connection.remote
 
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import kotlinx.coroutines.tasks.await
 
-class UserRemoteImpl : UserRemote {
-    override fun getAllUsers(): Result<List<UserDtoRemote>> {
-        TODO("Not yet implemented")
+class UserRemoteImpl(val db: FirebaseFirestore) : UserRemote {
+    override suspend fun getAllUsers(): Result<List<UserDtoRemote>> = runCatching {
+        var lista= arrayListOf<UserDtoRemote>()
+        db.collection("users")
+            .get()
+            .await().forEach {
+                lista.add(it.toObject(UserDtoRemote::class.java))
+        }
+        return@runCatching lista
     }
 
-    override fun getOneUser(user: UserDtoRemote): Result<UserDtoRemote> {
-        TODO("Not yet implemented")
+    override suspend fun getOneUser(user: UserDtoRemote): Result<UserDtoRemote?> = runCatching{
+        var lista= arrayListOf<UserDtoRemote>()
+        db.collection("users")
+            .whereEqualTo("name",user.name)
+            .get()
+            .await().forEach {
+                lista.add(it.toObject(UserDtoRemote::class.java))
+            }
+        return@runCatching lista.firstOrNull()
     }
 
-    override fun saveUser(user: UserDtoRemote): Result<UserDtoRemote> {
-        TODO("Not yet implemented")
+    override suspend fun saveUser(user: UserDtoRemote): Result<UserDtoRemote> {
+        var resp= db.collection("users")
+            .add(user)
+            .await()
+            .runCatching {
+                user
+            }
+        return resp
+
+
     }
 }

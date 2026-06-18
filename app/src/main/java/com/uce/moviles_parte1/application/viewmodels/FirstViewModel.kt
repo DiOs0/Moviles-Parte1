@@ -7,7 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -28,6 +30,9 @@ class FirstViewModel: ViewModel (){
     val userRemote get()= _userRemote
     private var _userRemote= MutableLiveData<UserDtoRemote>()
 
+    val listUsuarios:LiveData<List<UserDtoRemote>> get()=_listaUsuarios
+    private var _listaUsuarios= MutableLiveData<List<UserDtoRemote>>()
+
     fun contador(){
     viewModelScope.launch {
 
@@ -44,12 +49,11 @@ class FirstViewModel: ViewModel (){
 
     fun guardarUsuario(
         user: UserDtoRemote,
-        db: FirebaseFirestore,
         saveUC: SaveUserUC
     ){
 
         viewModelScope.launch {
-            val usnew=saveUC.saveUser(user,db)
+            val usnew=saveUC.saveUser(user)
             val usr=usnew.getOrNull()
 
             if(usr!=null){
@@ -61,6 +65,21 @@ class FirstViewModel: ViewModel (){
 
         }
 
+
+    }
+
+    fun listarUsuarios(
+        getAllUsersUC: GetAllUsersUC
+    ){
+        viewModelScope.launch {
+            val usuarios=getAllUsersUC.invoke().getOrNull()
+            if(usuarios!=null){
+                _listaUsuarios.value=usuarios
+            }else{
+                _listaUsuarios.value= listOf()
+            }
+
+        }
 
     }
 

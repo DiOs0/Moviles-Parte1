@@ -16,7 +16,10 @@ import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.application.viewmodels.FirstViewModel
 import com.uce.moviles_parte1.databinding.FragmentFirstFramentBinding
 import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
+import com.uce.moviles_parte1.repositories.connection.UserRepository
+import com.uce.moviles_parte1.repositories.connection.remote.UserRemoteImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -72,9 +75,27 @@ class FirstFragment : Fragment() {
 
             }
 
-            lifecycleScope.launch (Dispatchers.Main){
-                firstVM.guardarUsuario(user,db, SaveUserUC())
+            lifecycleScope.launch(Dispatchers.Main) {
+                firstVM.guardarUsuario(
+                    user,
+                    SaveUserUC(
+                        UserRepository(
+                            UserRemoteImpl(db)
+                        )
+                    )
+                )
                 //Los observers se registran solo una vez
+            }
+
+            lifecycleScope.launch {
+                firstVM.listarUsuarios(
+                    GetAllUsersUC(
+                        UserRepository(
+                            UserRemoteImpl(db)
+                        )
+
+                    )
+                )
             }
 
 
@@ -115,6 +136,13 @@ class FirstFragment : Fragment() {
                 it.name+" Registrado correctamente",
                 Snackbar.LENGTH_SHORT)
                 .show()
+        }
+
+        firstVM.listUsuarios.observe(viewLifecycleOwner){users->
+            users.forEach{
+                Log.d("TAG",it.toString())
+            }
+
         }
 
 
