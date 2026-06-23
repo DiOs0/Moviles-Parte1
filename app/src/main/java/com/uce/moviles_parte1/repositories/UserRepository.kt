@@ -1,8 +1,7 @@
-package com.uce.moviles_parte1.repositories.connection
+package com.uce.moviles_parte1.repositories
 
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
 import com.uce.moviles_parte1.repositories.connection.remote.UserRemoteImpl
-
 
 //Es la conclusion de remota con la local
 class UserRepository(val userRemoteImpl: UserRemoteImpl) {

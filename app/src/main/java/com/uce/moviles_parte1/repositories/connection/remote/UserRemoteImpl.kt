@@ -1,8 +1,7 @@
 package com.uce.moviles_parte1.repositories.connection.remote
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
 import kotlinx.coroutines.tasks.await
 
 class UserRemoteImpl(val db: FirebaseFirestore) : UserRemote {

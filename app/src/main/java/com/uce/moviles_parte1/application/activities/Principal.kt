@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.application.adapters.CustomAdapter
 import com.uce.moviles_parte1.databinding.ActivityPrincipalBinding
-import com.uce.moviles_parte1.dto.Empresas
+import com.uce.moviles_parte1.data.local.dto.Empresas
 
 class Principal : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 

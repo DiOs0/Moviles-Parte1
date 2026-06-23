@@ -1,6 +1,6 @@
 package com.uce.moviles_parte1.repositories.connection.remote
 
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
 
 interface UserRemote {
     suspend fun getAllUsers(): Result<List<UserDtoRemote>>

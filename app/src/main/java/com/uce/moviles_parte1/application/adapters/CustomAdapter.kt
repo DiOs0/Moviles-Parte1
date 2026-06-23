@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.databinding.MySpinnerLayoutBinding
-import com.uce.moviles_parte1.dto.Empresas
+import com.uce.moviles_parte1.data.local.dto.Empresas
 
 private val diffUtil = object : DiffUtil.ItemCallback<Empresas>() {
     override fun areItemsTheSame(oldItem: Empresas, newItem: Empresas): Boolean = oldItem.id == newItem.id

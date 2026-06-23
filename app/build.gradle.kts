@@ -70,4 +70,7 @@ dependencies {
     // For Jetpack Compose UI esto es para manejar live data
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.10.0")
 
+    //Retrofit 2
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 }

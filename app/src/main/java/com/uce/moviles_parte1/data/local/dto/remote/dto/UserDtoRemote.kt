@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.dto.remote.dto
+package com.uce.moviles_parte1.data.local.dto.remote.dto
 
 data class UserDtoRemote(
     val id:String,

@@ -3,19 +3,14 @@ package com.uce.moviles_parte1.application.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.users.TypicodeUsersDtoItem
+import com.uce.moviles_parte1.logic.usercases.GetAllUsersFromTypiCode
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 class FirstViewModel: ViewModel (){
 
@@ -32,6 +27,9 @@ class FirstViewModel: ViewModel (){
 
     val listUsuarios:LiveData<List<UserDtoRemote>> get()=_listaUsuarios
     private var _listaUsuarios= MutableLiveData<List<UserDtoRemote>>()
+
+    val typiUsers get()=_typiUsers
+    private var _typiUsers= MutableLiveData<List<TypicodeUsersDtoItem>?>()
 
     fun contador(){
     viewModelScope.launch {
@@ -66,6 +64,14 @@ class FirstViewModel: ViewModel (){
         }
 
 
+    }
+
+    fun getUsersTypi(){
+        viewModelScope.launch {
+
+            _typiUsers.value= GetAllUsersFromTypiCode().invoke()
+
+        }
     }
 
     fun listarUsuarios(

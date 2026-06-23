@@ -8,22 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
-import com.uce.moviles_parte1.R
 import com.uce.moviles_parte1.application.viewmodels.FirstViewModel
 import com.uce.moviles_parte1.databinding.FragmentFirstFramentBinding
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
-import com.uce.moviles_parte1.repositories.connection.UserRepository
+import com.uce.moviles_parte1.repositories.UserRepository
 import com.uce.moviles_parte1.repositories.connection.remote.UserRemoteImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 
@@ -118,11 +114,28 @@ class FirstFragment : Fragment() {
 //        }
 
 
+
+
+
+        }
+        binding.btnApi.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.IO) {
+
+                firstVM.getUsersTypi()
+            }
+
         }
     }
 
 
     private fun initObservers(){
+
+
+        firstVM.typiUsers.observe(viewLifecycleOwner){
+            it?.forEach {user->
+                Log.d("ITEMS",user.name)
+            }
+        }
 
 
         //Comienzo a observarlo si existe un cambio y el cilco de vida es la del activity

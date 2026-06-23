@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.dto
+package com.uce.moviles_parte1.data.local.dto
 
 data class Empresas(
     val id: Int,

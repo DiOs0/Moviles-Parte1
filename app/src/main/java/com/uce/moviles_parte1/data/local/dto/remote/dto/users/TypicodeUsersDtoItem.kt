@@ -1,0 +1,12 @@
+package com.uce.moviles_parte1.data.local.dto.remote.dto.users
+
+data class TypicodeUsersDtoItem(
+    val address: Address,
+    val company: Company,
+    val email: String,
+    val id: Int,
+    val name: String,
+    val phone: String,
+    val username: String,
+    val website: String
+)

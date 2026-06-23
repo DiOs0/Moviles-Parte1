@@ -1,9 +1,7 @@
 package com.uce.moviles_parte1.logic.usercases
 
-import com.google.firebase.firestore.FirebaseFirestore
-import com.uce.moviles_parte1.dto.remote.dto.UserDtoRemote
-import com.uce.moviles_parte1.repositories.connection.UserRepository
-import kotlinx.coroutines.tasks.await
+import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.repositories.UserRepository
 
 class SaveUserUC (val userRepository: UserRepository){
 
