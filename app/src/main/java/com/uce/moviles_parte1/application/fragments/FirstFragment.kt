@@ -1,13 +1,18 @@
 package com.uce.moviles_parte1.application.fragments
 
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.cloudinary.android.MediaManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -16,11 +21,17 @@ import com.uce.moviles_parte1.databinding.FragmentFirstFramentBinding
 import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
+import com.uce.moviles_parte1.repositories.CloudinaryRepository
 import com.uce.moviles_parte1.repositories.UserRepository
 import com.uce.moviles_parte1.repositories.connection.remote.UserRemoteImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.internal.connection.Exchange
+import java.io.File
+import java.io.FileOutputStream
+import java.time.temporal.Temporal
+import java.time.temporal.TemporalField
 
 
 class FirstFragment : Fragment() {
@@ -125,6 +136,94 @@ class FirstFragment : Fragment() {
             }
 
         }
+
+        binding.btnSubir.setOnClickListener {
+            viewGalery.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly
+                )
+            )
+
+        }
+    }
+
+    private val NOMBRE_ARCHIVO_CACHE= "temp_upload_image.jpg"
+
+    private val viewGalery= registerForActivityResult(
+
+        ActivityResultContracts.PickVisualMedia()
+
+    )
+    {
+            uri->
+        if(uri!=null){
+            //Guardar en el archivo temporal
+            val valid= guardarArchivoTemporal(uri)
+            //if(se guardo en el archivo temporal??)
+            if(valid){
+                Toast.makeText(requireContext()
+                    , "El archivo esta listo para ser subido"
+                    , Toast.LENGTH_SHORT).show()
+
+                subirImagen()
+            }
+            else{
+                Toast.makeText(requireContext()
+                    , "Ocurrio un error"
+                    , Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
+
+    }
+
+    private fun guardarArchivoTemporal(uri: Uri): Boolean {
+        return try{
+            val contentResolver=requireContext().contentResolver
+            val temporalFile = File(requireContext().cacheDir,"img_temp.jpg")
+            val inputStream=contentResolver.openInputStream(uri)?:return false
+            val outputStream= FileOutputStream(temporalFile)
+
+            inputStream.copyTo(outputStream)
+
+            inputStream.close()
+            outputStream.close()
+
+            true
+        }
+        catch (ex: Exception){
+            Log.e("UCE",ex.message.toString())
+            false
+        }
+    }
+
+    private fun subirImagen(){
+        val archivoCache= File(requireContext().cacheDir,"img_temp.jpg")
+        CloudinaryRepository.subirImagenFirmada(archivoCache){
+            esExitoso,resultado->
+
+            lifecycleScope.launch (Dispatchers.IO){
+                val resultText = if(esExitoso){
+                    "La imagen se subio correctamente en ${resultado}"
+
+                }else{
+                    "Ocurrio un error ${resultado}"
+                }
+
+                withContext(Dispatchers.Main){
+                    Toast.makeText(
+                        requireContext(),
+                        resultText,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+
+            }
+
+
+        }
     }
 
 
@@ -163,6 +262,19 @@ class FirstFragment : Fragment() {
 
     private fun initVariables() {
         db= Firebase.firestore
+
+        val config = mapOf(
+            "cloud_name" to "dqsor8lhk",
+            "api_key" to "868664956411584",
+            "api_secret" to " nadota"
+
+        )
+
+
+        MediaManager.init(
+            requireContext(),
+            config
+        )
     }
 
 

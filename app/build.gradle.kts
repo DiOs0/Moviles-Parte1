@@ -73,4 +73,7 @@ dependencies {
     //Retrofit 2
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    //Para las imagenes
+    implementation("com.cloudinary:cloudinary-android:2.4.0")
 }
