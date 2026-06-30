@@ -12,32 +12,33 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
 import com.cloudinary.android.MediaManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.uce.moviles_parte1.application.viewmodels.FirstViewModel
 import com.uce.moviles_parte1.databinding.FragmentFirstFramentBinding
-import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.remote.dto.UserDtoRemote
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC
 import com.uce.moviles_parte1.repositories.CloudinaryRepository
 import com.uce.moviles_parte1.repositories.UserRepository
+import com.uce.moviles_parte1.repositories.connection.local.LocalDataBase
 import com.uce.moviles_parte1.repositories.connection.remote.UserRemoteImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.internal.connection.Exchange
 import java.io.File
 import java.io.FileOutputStream
-import java.time.temporal.Temporal
-import java.time.temporal.TemporalField
 
 
 class FirstFragment : Fragment() {
 
     lateinit var binding: FragmentFirstFramentBinding
     private var db = Firebase.firestore
+
+    private lateinit var dblocal: LocalDataBase
 
     //Clase los delegados, es para atar caracteristicas extras a mi proyecto
     //La vista solo es consumidora
@@ -72,23 +73,19 @@ class FirstFragment : Fragment() {
 
         binding.btnRegresar.setOnClickListener {
             val user= UserDtoRemote(
-                "",
+                "11",
                 binding.nameUser.text.toString(),
-                binding.lastnameUser.text.toString()
+                binding.lastnameUser.text.toString(),
+                null
             )
-
-            lifecycleScope.launch (Dispatchers.Main ){
-                firstVM.contador()
-
-            }
 
             lifecycleScope.launch(Dispatchers.Main) {
                 firstVM.guardarUsuario(
                     user,
                     SaveUserUC(
                         UserRepository(
-                            UserRemoteImpl(db)
-                        )
+                            UserRemoteImpl(db),dblocal
+                        ),UploadImageInCloudinary(requireContext())
                     )
                 )
                 //Los observers se registran solo una vez
@@ -275,6 +272,13 @@ class FirstFragment : Fragment() {
             requireContext(),
             config
         )
+
+        dblocal = Room.databaseBuilder(
+            requireContext(),
+            LocalDataBase::class.java,"databe"
+        ).build()
+
+
     }
 
 

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.uce.moviles_parte1.data.local.dto.remote.dto.UserDtoRemote
-import com.uce.moviles_parte1.data.local.dto.remote.dto.users.TypicodeUsersDtoItem
+import com.uce.moviles_parte1.data.remote.dto.UserDtoRemote
+import com.uce.moviles_parte1.data.remote.dto.users.TypicodeUsersDtoItem
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersFromTypiCode
 import com.uce.moviles_parte1.logic.usercases.GetAllUsersUC
 import com.uce.moviles_parte1.logic.usercases.SaveUserUC

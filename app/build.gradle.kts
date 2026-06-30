@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.navigation.safeargs)
     id("com.google.gms.google-services")
+    //Activamos el plugin ksp
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -76,4 +78,9 @@ dependencies {
 
     //Para las imagenes
     implementation("com.cloudinary:cloudinary-android:2.4.0")
+
+    //Para ROOM (BDD local)
+    implementation("androidx.room:room-runtime:2.8.4")
+    ksp("androidx.room:room-compiler:2.8.4")
+    implementation("androidx.room:room-ktx:2.8.4")
 }

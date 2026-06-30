@@ -1,4 +1,4 @@
-package com.uce.moviles_parte1.data.local.dto.remote.dto.users
+package com.uce.moviles_parte1.data.remote.dto.users
 
 data class TypicodeUsersDtoItem(
     val address: Address,
